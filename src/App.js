@@ -70,7 +70,7 @@ export default function App() {
                     {/* Most Popular Class */}
                     <div className="relative bg-white shadow rounded-xl p-6 overflow-hidden">
                         <img
-                            src="/images/class-bg.jpg"
+                            src="/images/bg.jpg"
                             alt="Class background"
                             className="absolute inset-0 w-full h-full object-cover opacity-20"
                         />
@@ -83,7 +83,7 @@ export default function App() {
                     {/* Wins by Class */}
                     <div className="relative bg-white shadow rounded-xl p-6 overflow-hidden">
                         <img
-                            src="/images/class-win-bg.jpg"
+                            src="/images/bg.jpg"
                             alt="Wins background"
                             className="absolute inset-0 w-full h-full object-cover opacity-20"
                         />
@@ -102,7 +102,7 @@ export default function App() {
                     {/* Average Deck Size */}
                     <div className="relative bg-white shadow rounded-xl p-6 overflow-hidden">
                         <img
-                            src="/images/deck-bg.jpg"
+                            src="/images/bg.jpg"
                             alt="Deck background"
                             className="absolute inset-0 w-full h-full object-cover opacity-20"
                         />
@@ -115,7 +115,7 @@ export default function App() {
                     {/* Most Deadly Enemy */}
                     <div className="relative bg-white shadow rounded-xl p-6 overflow-hidden">
                         <img
-                            src="/images/enemy-bg.jpg"
+                            src="/images/bg.jpg"
                             alt="Enemy background"
                             className="absolute inset-0 w-full h-full object-cover opacity-20"
                         />
@@ -128,7 +128,7 @@ export default function App() {
                     {/* Most Picked Relic */}
                     <div className="relative bg-white shadow rounded-xl p-6 overflow-hidden">
                         <img
-                            src="/images/relic-bg.jpg"
+                            src="/images/bg.jpg"
                             alt="Relic background"
                             className="absolute inset-0 w-full h-full object-cover opacity-20"
                         />
@@ -141,7 +141,7 @@ export default function App() {
                     {/* Most Used Charm */}
                     <div className="relative bg-white shadow rounded-xl p-6 overflow-hidden">
                         <img
-                            src="/images/charm-bg.jpg"
+                            src="/images/bg.jpg"
                             alt="Charm background"
                             className="absolute inset-0 w-full h-full object-cover opacity-20"
                         />
@@ -154,7 +154,7 @@ export default function App() {
                     {/* Most Picked Card */}
                     <div className="relative bg-white shadow rounded-xl p-6 overflow-hidden">
                         <img
-                            src="/images/card-bg.jpg"
+                            src="/images/bg.jpg"
                             alt="Card background"
                             className="absolute inset-0 w-full h-full object-cover opacity-20"
                         />
@@ -171,7 +171,7 @@ export default function App() {
                     {/* Most Picked Hero Power */}
                     <div className="relative bg-white shadow rounded-xl p-6 overflow-hidden">
                         <img
-                            src="/images/heropower-bg.jpg"
+                            src="/images/bg.jpg"
                             alt="Hero Power background"
                             className="absolute inset-0 w-full h-full object-cover opacity-20"
                         />
@@ -188,7 +188,7 @@ export default function App() {
                     {/* Average Run Time */}
                     <div className="relative bg-white shadow rounded-xl p-6 overflow-hidden">
                         <img
-                            src="/images/time-bg.jpg"
+                            src="/images/bg.jpg"
                             alt="Time background"
                             className="absolute inset-0 w-full h-full object-cover opacity-20"
                         />
@@ -201,7 +201,7 @@ export default function App() {
                     {/* Highest Score */}
                     <div className="relative bg-white shadow rounded-xl p-6 overflow-hidden">
                         <img
-                            src="/images/score-bg.jpg"
+                            src="/images/bg.jpg"
                             alt="Score background"
                             className="absolute inset-0 w-full h-full object-cover opacity-20"
                         />
