@@ -8,26 +8,24 @@ import axios from 'axios';
 const API_BASE = "https://cardgamestatsapi-production.up.railway.app/api/values";
 
 export default function App() {
-    const [globalStats, setGlobalStats] = useState({ heroPower: null, topCard: null });
+    const [globalStats, setGlobalStats] = useState({
+        cards: [],
+        relics: [],
+        charms: [],
+        heroPowers: [],
+        enemies: [],
+        classes: []
+    });
     //const [searchName, setSearchName] = useState("");
     //const [playerStats, setPlayerStats] = useState(null);
-    const [cardPickData, setCardPickData] = useState([]);
+    //const [cardPickData, setCardPickData] = useState([]);
     //const [mostPickedCard, setMostPickedCard] = useState(null);
     //const [mostPickedHero, setMostPickedHero] = useState(null);
 
     // Load global stats
     useEffect(() => {
-        axios.get('https://cardgamestatsapi-production.up.railway.app/api/values/card-picks')
-            .then(res => {
-                setGlobalStats(prev => ({ ...prev, topCard: res.data }));
-            })
-            .catch(err => console.error(err));
-
-        // Top HeroPower
-        axios.get('https://cardgamestatsapi-production.up.railway.app/api/values/popular-hero-power')
-            .then(res => {
-                setGlobalStats(prev => ({ ...prev, heroPower: res.data }));
-            })
+        axios.get('https://cardgamestatsapi-production.up.railway.app/api/values/global-stats')
+            .then(res => setGlobalStats(res.data))
             .catch(err => console.error(err));
     }, []);
 
@@ -43,67 +41,70 @@ export default function App() {
         <div className="min-h-screen bg-gray-50 p-6">
             {/* Header */}
             <header className="text-center mb-8">
-                <h1 className="text-4xl font-bold text-blue-600">Card Game Stats Dashboard</h1>
-                <p className="text-gray-600 mt-2">View global trends or search by Steam name</p>
+                <h1 className="text-4xl font-bold text-blue-600">Global Stats Dashboard</h1>
+                <p className="text-gray-600 mt-2">View global trends across all runs</p>
             </header>
 
-            {/* Global Stats Section */}
-            <section className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10 max-w-4xl mx-auto">
-                <div className="bg-white shadow rounded-xl p-6 text-center">
-                    <h2 className="text-lg font-semibold">Most Popular Hero Power</h2>
-                    {globalStats.heroPower ? (
-                        <p className="mt-2 text-green-600 text-xl">
-                            {globalStats.heroPower.HeroPower} ({globalStats.heroPower.Count} runs)
-                        </p>
-                    ) : (
-                        <p className="text-gray-400 mt-2">Loading...</p>
-                    )}
-                </div>
+            {/* Highlight Stats Section */}
+            <section className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 max-w-6xl mx-auto">
                 <div className="bg-white shadow rounded-xl p-6 text-center">
                     <h2 className="text-lg font-semibold">Most Picked Card</h2>
-                    {globalStats.topCard ? (
-                        <p className="mt-2 text-purple-600 text-xl">
-                            {globalStats.topCard.Card} ({globalStats.topCard.Count} times)
-                        </p>
-                    ) : (
-                        <p className="text-gray-400 mt-2">Loading...</p>
-                    )}
+                    <p className="mt-2 text-purple-600 text-xl">{globalStats.topCard?.Card} ({globalStats.topCard?.Count} times)</p>
+                </div>
+                <div className="bg-white shadow rounded-xl p-6 text-center">
+                    <h2 className="text-lg font-semibold">Most Popular Class</h2>
+                    <p className="mt-2 text-green-600 text-xl">{globalStats.topClass?.ClassName}</p>
+                </div>
+                <div className="bg-white shadow rounded-xl p-6 text-center">
+                    <h2 className="text-lg font-semibold">Highest Score</h2>
+                    <p className="mt-2 text-red-600 text-xl">{globalStats.highestScore?.SteamName} ({globalStats.highestScore?.Score})</p>
                 </div>
             </section>
 
-            {/* Search Player Section */}
-            {/*<section className="bg-white shadow rounded-xl p-6 mb-10 max-w-3xl mx-auto">*/}
-            {/*    <h2 className="text-xl font-semibold mb-4">Search Player by Steam Name</h2>*/}
-            {/*    <div className="flex gap-2">*/}
-            {/*        <input*/}
-            {/*            type="text"*/}
-            {/*            value={searchName}*/}
-            {/*            onChange={e => setSearchName(e.target.value)}*/}
-            {/*            placeholder="Enter Steam Name"*/}
-            {/*            className="flex-1 border rounded px-3 py-2"*/}
-            {/*        />*/}
-            {/*        <button onClick={handleSearch} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">*/}
-            {/*            Search*/}
-            {/*        </button>*/}
-            {/*    </div>*/}
-            {/*    {playerStats && (*/}
-            {/*        <div className="mt-4 space-y-2">*/}
-            {/*            <p><strong>Win Rate:</strong> {(playerStats.winRate * 100).toFixed(1)}%</p>*/}
-            {/*            <p><strong>Most Played Class:</strong> {playerStats.mostPlayedClass}</p>*/}
-            {/*        </div>*/}
-            {/*    )}*/}
-            {/*</section>*/}
-
-            {/* Card Picks Chart */}
-            <section className="bg-white shadow rounded-xl p-6 max-w-4xl mx-auto">
-                <h2 className="text-xl font-semibold mb-4">Most Picked Cards</h2>
-                <LineChart width={600} height={300} data={cardPickData}>
-                    <Line type="monotone" dataKey="value" stroke="#2563EB" strokeWidth={2} />
-                    <CartesianGrid stroke="#e0e0e0" strokeDasharray="5 5" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
-                </LineChart>
+            {/* Full Stats Table */}
+            <section className="bg-white shadow rounded-xl p-6 max-w-6xl mx-auto overflow-x-auto">
+                <table className="min-w-full table-auto border-collapse">
+                    <thead>
+                        <tr className="bg-gray-100">
+                            <th className="border px-4 py-2">Stat</th>
+                            <th className="border px-4 py-2">Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td className="border px-4 py-2">Table of Wins per Class</td>
+                            <td className="border px-4 py-2">
+                                {Object.entries(globalStats.winsByClass || {}).map(([cls, wins]) => (
+                                    <div key={cls}>{cls}: {wins}</div>
+                                ))}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="border px-4 py-2">Average Deck Size</td>
+                            <td className="border px-4 py-2">{globalStats.avgDeckSize}</td>
+                        </tr>
+                        <tr>
+                            <td className="border px-4 py-2">Most Deadly Enemy</td>
+                            <td className="border px-4 py-2">{globalStats.mostDeadlyEnemy}</td>
+                        </tr>
+                        <tr>
+                            <td className="border px-4 py-2">Most Picked Relic</td>
+                            <td className="border px-4 py-2">{globalStats.topRelic}</td>
+                        </tr>
+                        <tr>
+                            <td className="border px-4 py-2">Most Used Charm</td>
+                            <td className="border px-4 py-2">{globalStats.topCharm}</td>
+                        </tr>
+                        <tr>
+                            <td className="border px-4 py-2">Most Picked Hero Power</td>
+                            <td className="border px-4 py-2">{globalStats.heroPower?.HeroPower} ({globalStats.heroPower?.Count})</td>
+                        </tr>
+                        <tr>
+                            <td className="border px-4 py-2">Average Run Time</td>
+                            <td className="border px-4 py-2">{globalStats.avgRunTime}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </section>
         </div>
     );
