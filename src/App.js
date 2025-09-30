@@ -140,7 +140,7 @@ export default function App() {
                         <tr>
                             <td className="px-6 py-4">Highest Score</td>
                             <td className="px-6 py-4">
-                                {globalStats.highestScore.SteamName} ({globalStats.highestScore.Score})
+                                {globalStats.highestScore.Score} ({globalStats.highestScore.SteamName})
                             </td>
                         </tr>
                     </tbody>
