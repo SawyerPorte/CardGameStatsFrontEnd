@@ -59,84 +59,65 @@ export default function App() {
             .catch((err) => console.error(err));
     }, []);
 
+    const statCards = [
+        { title: "Most Popular Class", value: globalStats.topClass?.Name || "NEED DATA" },
+        {
+            title: "Wins by Class",
+            value:
+                Object.keys(globalStats.winsByClass).length > 0
+                    ? Object.entries(globalStats.winsByClass).map(([cls, count]) => (
+                        <div key={cls}>
+                            {cls}: {count}
+                        </div>
+                    ))
+                    : "NEED DATA",
+        },
+        { title: "Average Deck Size", value: globalStats.avgDeckSize || "NEED DATA" },
+        { title: "Most Deadly Enemy", value: globalStats.mostDeadlyEnemy || "NEED DATA" },
+        { title: "Most Picked Relic", value: globalStats.topRelic || "NEED DATA" },
+        { title: "Most Used Charm", value: globalStats.topCharm || "NEED DATA" },
+        {
+            title: "Most Picked Card",
+            value:
+                globalStats.topCard?.Name
+                    ? `${globalStats.topCard.Name} (${globalStats.topCard.Count})`
+                    : "NEED DATA",
+        },
+        {
+            title: "Most Picked Hero Power",
+            value:
+                globalStats.heroPower?.Name
+                    ? `${globalStats.heroPower.Name} (${globalStats.heroPower.Count})`
+                    : "NEED DATA",
+        },
+        { title: "Average Run Time", value: globalStats.avgRunTime || "NEED DATA" },
+        {
+            title: "Highest Score",
+            value:
+                globalStats.highestScore?.Score
+                    ? `${globalStats.highestScore.Score} (${globalStats.highestScore.SteamName})`
+                    : "NEED DATA",
+        },
+    ];
+
     return (
-    <>
-            <div className="p-6 bg-gray-50 min-h-screen">
-                <h1 className="text-4xl font-bold mb-6 text-center">Global Stats Dashboard</h1>
+        <div className="p-6 bg-gray-50 min-h-screen w-full">
+            <h1 className="text-4xl font-bold mb-8 text-center w-full">
+                Global Stats Dashboard
+            </h1>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full">
-                    {/* Most Popular Class */}
-                    <div className="bg-white shadow rounded-xl p-6 flex flex-col justify-center items-center">
-                        <h2 className="text-lg font-semibold mb-2">Most Popular Class</h2>
-                        <p>{globalStats.topClass?.Name || "NEED DATA"}</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 w-full">
+                {statCards.map((stat) => (
+                    <div
+                        key={stat.title}
+                        className="bg-white shadow rounded-xl p-6 flex flex-col justify-center items-center text-center"
+                    >
+                        <h2 className="text-lg font-semibold mb-2">{stat.title}</h2>
+                        <p>{stat.value}</p>
                     </div>
-
-                    {/* Wins By Class */}
-                    <div className="bg-white shadow rounded-xl p-6 flex flex-col justify-center items-center">
-                        <h2 className="text-lg font-semibold mb-2">Wins by Class</h2>
-                        {globalStats.winsByClass && Object.keys(globalStats.winsByClass).length > 0
-                            ? Object.entries(globalStats.winsByClass).map(([cls, count]) => (
-                                <div key={cls}>{cls}: {count}</div>
-                            ))
-                            : "NEED DATA"
-                        }
-                    </div>
-
-                    {/* Average Deck Size */}
-                    <div className="bg-white shadow rounded-xl p-6 flex flex-col justify-center items-center">
-                        <h2 className="text-lg font-semibold mb-2">Average Deck Size</h2>
-                        <p>{globalStats.avgDeckSize || "NEED DATA"}</p>
-                    </div>
-
-                    {/* Most Deadly Enemy */}
-                    <div className="bg-white shadow rounded-xl p-6 flex flex-col justify-center items-center">
-                        <h2 className="text-lg font-semibold mb-2">Most Deadly Enemy</h2>
-                        <p>{globalStats.mostDeadlyEnemy || "NEED DATA"}</p>
-                    </div>
-
-                    {/* Most Picked Relic */}
-                    <div className="bg-white shadow rounded-xl p-6 flex flex-col justify-center items-center">
-                        <h2 className="text-lg font-semibold mb-2">Most Picked Relic</h2>
-                        <p>{globalStats.topRelic || "NEED DATA"}</p>
-                    </div>
-
-                    {/* Most Used Charm */}
-                    <div className="bg-white shadow rounded-xl p-6 flex flex-col justify-center items-center">
-                        <h2 className="text-lg font-semibold mb-2">Most Used Charm</h2>
-                        <p>{globalStats.topCharm || "NEED DATA"}</p>
-                    </div>
-
-                    {/* Most Picked Card */}
-                    <div className="bg-white shadow rounded-xl p-6 flex flex-col justify-center items-center">
-                        <h2 className="text-lg font-semibold mb-2">Most Picked Card</h2>
-                        <p>{globalStats.topCard?.Name ? `${globalStats.topCard.Name} (${globalStats.topCard.Count})` : "NEED DATA"}</p>
-                    </div>
-
-                    {/* Most Picked Hero Power */}
-                    <div className="bg-white shadow rounded-xl p-6 flex flex-col justify-center items-center">
-                        <h2 className="text-lg font-semibold mb-2">Most Picked Hero Power</h2>
-                        <p>{globalStats.heroPower?.Name ? `${globalStats.heroPower.Name} (${globalStats.heroPower.Count})` : "NEED DATA"}</p>
-                    </div>
-
-                    {/* Average Run Time */}
-                    <div className="bg-white shadow rounded-xl p-6 flex flex-col justify-center items-center">
-                        <h2 className="text-lg font-semibold mb-2">Average Run Time</h2>
-                        <p>{globalStats.avgRunTime || "NEED DATA"}</p>
-                    </div>
-
-                    {/* Highest Score */}
-                    <div className="bg-white shadow rounded-xl p-6 flex flex-col justify-center items-center">
-                        <h2 className="text-lg font-semibold mb-2">Highest Score</h2>
-                        <p>{globalStats.highestScore?.Score ? `${globalStats.highestScore.Score} (${globalStats.highestScore.SteamName})` : "NEED DATA"}</p>
-                    </div>
-                </div>
+                ))}
             </div>
-            </>
-
-
-            
-            
-
-
+        </div>
     );
+}
 }
