@@ -68,66 +68,63 @@ export default function App() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {/* Most Popular Class */}
-                    <div className="bg-white p-6 rounded-xl shadow text-center">
-                        <h2 className="text-lg font-semibold">Most Popular Class</h2>
-                        <p className="text-xl text-blue-600 mt-2">
+                    <div className="bg-white shadow rounded-xl p-6">
+                        <h2 className="text-lg font-semibold mb-2">Most Popular Class</h2>
+                        <p className="text-gray-700">
                             {globalStats.topClass?.Name || "NEED DATA"}
                         </p>
                     </div>
 
                     {/* Wins by Class */}
-                    <div className="bg-white p-6 rounded-xl shadow text-center">
-                        <h2 className="text-lg font-semibold">Wins by Class</h2>
-                        {globalStats.winsByClass &&
-                            Object.keys(globalStats.winsByClass).length > 0 ? (
-                            <ul className="mt-2 space-y-1 text-gray-700">
-                                {Object.entries(globalStats.winsByClass).map(([cls, count]) => (
-                                    <li key={cls}>
-                                        <strong>{cls}</strong>: {count}
-                                    </li>
-                                ))}
-                            </ul>
+                    <div className="bg-white shadow rounded-xl p-6">
+                        <h2 className="text-lg font-semibold mb-2">Wins by Class</h2>
+                        {Object.keys(globalStats.winsByClass || {}).length > 0 ? (
+                            Object.entries(globalStats.winsByClass).map(([cls, count]) => (
+                                <p key={cls} className="text-gray-700">
+                                    {cls}: {count}
+                                </p>
+                            ))
                         ) : (
-                            <p className="text-gray-400 mt-2">NEED DATA</p>
+                            <p className="text-gray-500">NEED DATA</p>
                         )}
                     </div>
 
                     {/* Average Deck Size */}
-                    <div className="bg-white p-6 rounded-xl shadow text-center">
-                        <h2 className="text-lg font-semibold">Average Deck Size</h2>
-                        <p className="text-xl text-green-600 mt-2">
+                    <div className="bg-white shadow rounded-xl p-6">
+                        <h2 className="text-lg font-semibold mb-2">Average Deck Size</h2>
+                        <p className="text-gray-700">
                             {globalStats.avgDeckSize || "NEED DATA"}
                         </p>
                     </div>
 
                     {/* Most Deadly Enemy */}
-                    <div className="bg-white p-6 rounded-xl shadow text-center">
-                        <h2 className="text-lg font-semibold">Most Deadly Enemy</h2>
-                        <p className="text-xl text-red-600 mt-2">
+                    <div className="bg-white shadow rounded-xl p-6">
+                        <h2 className="text-lg font-semibold mb-2">Most Deadly Enemy</h2>
+                        <p className="text-gray-700">
                             {globalStats.mostDeadlyEnemy || "NEED DATA"}
                         </p>
                     </div>
 
                     {/* Most Picked Relic */}
-                    <div className="bg-white p-6 rounded-xl shadow text-center">
-                        <h2 className="text-lg font-semibold">Most Picked Relic</h2>
-                        <p className="text-xl text-purple-600 mt-2">
+                    <div className="bg-white shadow rounded-xl p-6">
+                        <h2 className="text-lg font-semibold mb-2">Most Picked Relic</h2>
+                        <p className="text-gray-700">
                             {globalStats.topRelic || "NEED DATA"}
                         </p>
                     </div>
 
                     {/* Most Used Charm */}
-                    <div className="bg-white p-6 rounded-xl shadow text-center">
-                        <h2 className="text-lg font-semibold">Most Used Charm</h2>
-                        <p className="text-xl text-pink-600 mt-2">
+                    <div className="bg-white shadow rounded-xl p-6">
+                        <h2 className="text-lg font-semibold mb-2">Most Used Charm</h2>
+                        <p className="text-gray-700">
                             {globalStats.topCharm || "NEED DATA"}
                         </p>
                     </div>
 
                     {/* Most Picked Card */}
-                    <div className="bg-white p-6 rounded-xl shadow text-center">
-                        <h2 className="text-lg font-semibold">Most Picked Card</h2>
-                        <p className="text-xl text-indigo-600 mt-2">
+                    <div className="bg-white shadow rounded-xl p-6">
+                        <h2 className="text-lg font-semibold mb-2">Most Picked Card</h2>
+                        <p className="text-gray-700">
                             {globalStats.topCard?.Name
                                 ? `${globalStats.topCard.Name} (${globalStats.topCard.Count})`
                                 : "NEED DATA"}
@@ -135,9 +132,9 @@ export default function App() {
                     </div>
 
                     {/* Most Picked Hero Power */}
-                    <div className="bg-white p-6 rounded-xl shadow text-center">
-                        <h2 className="text-lg font-semibold">Most Picked Hero Power</h2>
-                        <p className="text-xl text-orange-600 mt-2">
+                    <div className="bg-white shadow rounded-xl p-6">
+                        <h2 className="text-lg font-semibold mb-2">Most Picked Hero Power</h2>
+                        <p className="text-gray-700">
                             {globalStats.heroPower?.Name
                                 ? `${globalStats.heroPower.Name} (${globalStats.heroPower.Count})`
                                 : "NEED DATA"}
@@ -145,17 +142,17 @@ export default function App() {
                     </div>
 
                     {/* Average Run Time */}
-                    <div className="bg-white p-6 rounded-xl shadow text-center">
-                        <h2 className="text-lg font-semibold">Average Run Time</h2>
-                        <p className="text-xl text-gray-700 mt-2">
+                    <div className="bg-white shadow rounded-xl p-6">
+                        <h2 className="text-lg font-semibold mb-2">Average Run Time</h2>
+                        <p className="text-gray-700">
                             {globalStats.avgRunTime || "NEED DATA"}
                         </p>
                     </div>
 
                     {/* Highest Score */}
-                    <div className="bg-white p-6 rounded-xl shadow text-center col-span-1 sm:col-span-2">
-                        <h2 className="text-lg font-semibold">Highest Score</h2>
-                        <p className="text-xl text-yellow-600 mt-2">
+                    <div className="bg-white shadow rounded-xl p-6">
+                        <h2 className="text-lg font-semibold mb-2">Highest Score</h2>
+                        <p className="text-gray-700">
                             {globalStats.highestScore?.Score
                                 ? `${globalStats.highestScore.Score} (${globalStats.highestScore.SteamName})`
                                 : "NEED DATA"}
