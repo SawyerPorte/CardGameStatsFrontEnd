@@ -9,24 +9,26 @@ const API_BASE = "https://cardgamestatsapi-production.up.railway.app/api/values"
 
 export default function App() {
     const [globalStats, setGlobalStats] = useState({ heroPower: null, topCard: null });
-    const [searchName, setSearchName] = useState("");
-    const [playerStats, setPlayerStats] = useState(null);
+    //const [searchName, setSearchName] = useState("");
+    //const [playerStats, setPlayerStats] = useState(null);
     const [cardPickData, setCardPickData] = useState([]);
-    const [mostPickedCard, setMostPickedCard] = useState(null);
-    const [mostPickedHero, setMostPickedHero] = useState(null);
+    //const [mostPickedCard, setMostPickedCard] = useState(null);
+    //const [mostPickedHero, setMostPickedHero] = useState(null);
 
     // Load global stats
     useEffect(() => {
-        // Top Card
         axios.get('https://cardgamestatsapi-production.up.railway.app/api/values/most-picked-card')
-            .then(res => setMostPickedCard(res.data))
+            .then(res => {
+                setGlobalStats(prev => ({ ...prev, topCard: res.data }));
+            })
             .catch(err => console.error(err));
 
         // Top HeroPower
-        axios.get('https://cardgamestatsapi-production.up.railway.app/api/values/most-popular-hero-power')
-            .then(res => setMostPickedHero(res.data))
+        axios.get('https://cardgamestatsapi-production.up.railway.app/api/values/popular-hero-power')
+            .then(res => {
+                setGlobalStats(prev => ({ ...prev, heroPower: res.data }));
+            })
             .catch(err => console.error(err));
-        
     }, []);
 
     //// Handle search
