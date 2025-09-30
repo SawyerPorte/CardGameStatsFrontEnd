@@ -106,14 +106,14 @@ export default function App() {
                 Global Stats Dashboard
             </h1>
 
-            <div class="grid grid-cols-4 gap-4">
+            <div className='grid md:grid-cols-4 auto-rows-[300px] gap-4 my-10'>
                 {statCards.map((stat) => (
                     <div
                         key={stat.title}
-                        className="bg-white shadow rounded-xl p-6 flex flex-col justify-center items-center text-center"
+                        className="bg-neutral-100 border-2 rounded-xl p-2"
                     >
-                        <h2 className="text-lg font-semibold mb-2">{stat.title}</h2>
-                        <p>{stat.value}</p>
+                        <h2 className="text-xl font-bold">{stat.title}</h2>
+                        <p className="text-lg">{stat.value}</p>
                     </div>
                 ))}
             </div>
