@@ -67,7 +67,7 @@ export default function App() {
                 <div className="grid grid-cols-3 gap-6 w-full">
                     {/* Most Popular Class */}
                     <div className="relative bg-white shadow rounded-xl p-6 overflow-hidden h-40">
-                        <img src="/images/class-bg.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-30" />
+                        <img src="/images/bg.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-30" />
                         <div className="relative z-10">
                             <h2 className="text-lg font-semibold mb-2">Most Popular Class</h2>
                             <p>{globalStats.topClass?.Name || "NEED DATA"}</p>
@@ -76,7 +76,7 @@ export default function App() {
 
                     {/* Wins By Class */}
                     <div className="relative bg-white shadow rounded-xl p-6 overflow-hidden h-40">
-                        <img src="/images/wins-bg.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-30" />
+                        <img src="/images/bg.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-30" />
                         <div className="relative z-10">
                             <h2 className="text-lg font-semibold mb-2">Wins by Class</h2>
                             {globalStats.winsByClass && Object.keys(globalStats.winsByClass).length > 0
@@ -90,7 +90,7 @@ export default function App() {
 
                     {/* Average Deck Size */}
                     <div className="relative bg-white shadow rounded-xl p-6 overflow-hidden h-40">
-                        <img src="/images/deck-bg.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-30" />
+                        <img src="/images/bg.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-30" />
                         <div className="relative z-10">
                             <h2 className="text-lg font-semibold mb-2">Average Deck Size</h2>
                             <p>{globalStats.avgDeckSize || "NEED DATA"}</p>
@@ -99,7 +99,7 @@ export default function App() {
 
                     {/* Most Deadly Enemy */}
                     <div className="relative bg-white shadow rounded-xl p-6 overflow-hidden h-40">
-                        <img src="/images/enemy-bg.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-30" />
+                        <img src="/images/bg.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-30" />
                         <div className="relative z-10">
                             <h2 className="text-lg font-semibold mb-2">Most Deadly Enemy</h2>
                             <p>{globalStats.mostDeadlyEnemy || "NEED DATA"}</p>
@@ -108,7 +108,7 @@ export default function App() {
 
                     {/* Most Picked Relic */}
                     <div className="relative bg-white shadow rounded-xl p-6 overflow-hidden h-40">
-                        <img src="/images/relic-bg.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-30" />
+                        <img src="/images/bg.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-30" />
                         <div className="relative z-10">
                             <h2 className="text-lg font-semibold mb-2">Most Picked Relic</h2>
                             <p>{globalStats.topRelic || "NEED DATA"}</p>
@@ -117,7 +117,7 @@ export default function App() {
 
                     {/* Most Used Charm */}
                     <div className="relative bg-white shadow rounded-xl p-6 overflow-hidden h-40">
-                        <img src="/images/charm-bg.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-30" />
+                        <img src="/images/bg.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-30" />
                         <div className="relative z-10">
                             <h2 className="text-lg font-semibold mb-2">Most Used Charm</h2>
                             <p>{globalStats.topCharm || "NEED DATA"}</p>
@@ -126,7 +126,7 @@ export default function App() {
 
                     {/* Most Picked Card */}
                     <div className="relative bg-white shadow rounded-xl p-6 overflow-hidden h-40">
-                        <img src="/images/card-bg.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-30" />
+                        <img src="/images/bg.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-30" />
                         <div className="relative z-10">
                             <h2 className="text-lg font-semibold mb-2">Most Picked Card</h2>
                             <p>{globalStats.topCard?.Name ? `${globalStats.topCard.Name} (${globalStats.topCard.Count})` : "NEED DATA"}</p>
@@ -135,7 +135,7 @@ export default function App() {
 
                     {/* Most Picked Hero Power */}
                     <div className="relative bg-white shadow rounded-xl p-6 overflow-hidden h-40">
-                        <img src="/images/hero-bg.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-30" />
+                        <img src="/images/bg.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-30" />
                         <div className="relative z-10">
                             <h2 className="text-lg font-semibold mb-2">Most Picked Hero Power</h2>
                             <p>{globalStats.heroPower?.Name ? `${globalStats.heroPower.Name} (${globalStats.heroPower.Count})` : "NEED DATA"}</p>
@@ -144,7 +144,7 @@ export default function App() {
 
                     {/* Average Run Time */}
                     <div className="relative bg-white shadow rounded-xl p-6 overflow-hidden h-40">
-                        <img src="/images/time-bg.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-30" />
+                        <img src="/images/bg.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-30" />
                         <div className="relative z-10">
                             <h2 className="text-lg font-semibold mb-2">Average Run Time</h2>
                             <p>{globalStats.avgRunTime || "NEED DATA"}</p>
@@ -153,7 +153,7 @@ export default function App() {
 
                     {/* Highest Score */}
                     <div className="relative bg-white shadow rounded-xl p-6 overflow-hidden h-40">
-                        <img src="/images/score-bg.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-30" />
+                        <img src="/images/bg.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-30" />
                         <div className="relative z-10">
                             <h2 className="text-lg font-semibold mb-2">Highest Score</h2>
                             <p>{globalStats.highestScore?.Score ? `${globalStats.highestScore.Score} (${globalStats.highestScore.SteamName})` : "NEED DATA"}</p>
