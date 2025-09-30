@@ -12,20 +12,21 @@ export default function App() {
     const [searchName, setSearchName] = useState("");
     const [playerStats, setPlayerStats] = useState(null);
     const [cardPickData, setCardPickData] = useState([]);
+    const [mostPickedCard, setMostPickedCard] = useState(null);
+    const [mostPickedHero, setMostPickedHero] = useState(null);
 
     // Load global stats
     useEffect(() => {
-        // Hero Power
-        axios.get(`${API_BASE}/popular-hero-power`).then(res => {
-            setGlobalStats(prev => ({ ...prev, heroPower: res.data }));
-        });
+        // Top Card
+        axios.get('https://cardgamestatsapi-production.up.railway.app/api/values/most-picked-card')
+            .then(res => setMostPickedCard(res.data))
+            .catch(err => console.error(err));
 
-        // Top card
-        axios.get(`${API_BASE}/card-picks`).then(res => {
-            const sorted = res.data.sort((a, b) => b.timesPicked - a.timesPicked);
-            setGlobalStats(prev => ({ ...prev, topCard: sorted[0] }));
-            setCardPickData(res.data.map(item => ({ name: item.cardName, value: item.timesPicked })));
-        });
+        // Top HeroPower
+        axios.get('https://cardgamestatsapi-production.up.railway.app/api/values/most-popular-hero-power')
+            .then(res => setMostPickedHero(res.data))
+            .catch(err => console.error(err));
+        
     }, []);
 
     //// Handle search
@@ -49,7 +50,9 @@ export default function App() {
                 <div className="bg-white shadow rounded-xl p-6 text-center">
                     <h2 className="text-lg font-semibold">Most Popular Hero Power</h2>
                     {globalStats.heroPower ? (
-                        <p className="mt-2 text-green-600 text-xl">{globalStats.heroPower.heroPower} ({globalStats.heroPower.count} runs)</p>
+                        <p className="mt-2 text-green-600 text-xl">
+                            {globalStats.heroPower.HeroPower} ({globalStats.heroPower.Count} runs)
+                        </p>
                     ) : (
                         <p className="text-gray-400 mt-2">Loading...</p>
                     )}
@@ -57,7 +60,9 @@ export default function App() {
                 <div className="bg-white shadow rounded-xl p-6 text-center">
                     <h2 className="text-lg font-semibold">Most Picked Card</h2>
                     {globalStats.topCard ? (
-                        <p className="mt-2 text-purple-600 text-xl">{globalStats.topCard.cardName} ({globalStats.topCard.timesPicked} times)</p>
+                        <p className="mt-2 text-purple-600 text-xl">
+                            {globalStats.topCard.Card} ({globalStats.topCard.Count} times)
+                        </p>
                     ) : (
                         <p className="text-gray-400 mt-2">Loading...</p>
                     )}
