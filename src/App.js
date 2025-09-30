@@ -66,85 +66,153 @@ export default function App() {
                     Global Stats Dashboard
                 </h1>
 
-                {/* Grid container for stats */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
-
                     {/* Most Popular Class */}
-                    <div className="bg-white shadow rounded-xl p-6">
-                        <h2 className="text-lg font-semibold mb-2">Most Popular Class</h2>
-                        <p>{globalStats.topClass?.Name || "NEED DATA"}</p>
+                    <div className="relative bg-white shadow rounded-xl p-6 overflow-hidden">
+                        <img
+                            src="/images/class-bg.jpg"
+                            alt="Class background"
+                            className="absolute inset-0 w-full h-full object-cover opacity-20"
+                        />
+                        <div className="relative">
+                            <h2 className="text-lg font-semibold mb-2">Most Popular Class</h2>
+                            <p>{globalStats.topClass?.Name || "NEED DATA"}</p>
+                        </div>
                     </div>
 
                     {/* Wins by Class */}
-                    <div className="bg-white shadow rounded-xl p-6">
-                        <h2 className="text-lg font-semibold mb-2">Wins by Class</h2>
-                        {Object.keys(globalStats.winsByClass || {}).length > 0 ? (
-                            Object.entries(globalStats.winsByClass).map(([cls, count]) => (
-                                <p key={cls}>{cls}: {count}</p>
-                            ))
-                        ) : (
-                            <p>NEED DATA</p>
-                        )}
+                    <div className="relative bg-white shadow rounded-xl p-6 overflow-hidden">
+                        <img
+                            src="/images/class-win-bg.jpg"
+                            alt="Wins background"
+                            className="absolute inset-0 w-full h-full object-cover opacity-20"
+                        />
+                        <div className="relative">
+                            <h2 className="text-lg font-semibold mb-2">Wins by Class</h2>
+                            {Object.keys(globalStats.winsByClass || {}).length > 0 ? (
+                                Object.entries(globalStats.winsByClass).map(([cls, count]) => (
+                                    <p key={cls}>{cls}: {count}</p>
+                                ))
+                            ) : (
+                                <p>NEED DATA</p>
+                            )}
+                        </div>
                     </div>
 
                     {/* Average Deck Size */}
-                    <div className="bg-white shadow rounded-xl p-6">
-                        <h2 className="text-lg font-semibold mb-2">Average Deck Size</h2>
-                        <p>{globalStats.avgDeckSize || "NEED DATA"}</p>
+                    <div className="relative bg-white shadow rounded-xl p-6 overflow-hidden">
+                        <img
+                            src="/images/deck-bg.jpg"
+                            alt="Deck background"
+                            className="absolute inset-0 w-full h-full object-cover opacity-20"
+                        />
+                        <div className="relative">
+                            <h2 className="text-lg font-semibold mb-2">Average Deck Size</h2>
+                            <p>{globalStats.avgDeckSize || "NEED DATA"}</p>
+                        </div>
                     </div>
 
                     {/* Most Deadly Enemy */}
-                    <div className="bg-white shadow rounded-xl p-6">
-                        <h2 className="text-lg font-semibold mb-2">Most Deadly Enemy</h2>
-                        <p>{globalStats.mostDeadlyEnemy || "NEED DATA"}</p>
+                    <div className="relative bg-white shadow rounded-xl p-6 overflow-hidden">
+                        <img
+                            src="/images/enemy-bg.jpg"
+                            alt="Enemy background"
+                            className="absolute inset-0 w-full h-full object-cover opacity-20"
+                        />
+                        <div className="relative">
+                            <h2 className="text-lg font-semibold mb-2">Most Deadly Enemy</h2>
+                            <p>{globalStats.mostDeadlyEnemy || "NEED DATA"}</p>
+                        </div>
                     </div>
 
                     {/* Most Picked Relic */}
-                    <div className="bg-white shadow rounded-xl p-6">
-                        <h2 className="text-lg font-semibold mb-2">Most Picked Relic</h2>
-                        <p>{globalStats.topRelic || "NEED DATA"}</p>
+                    <div className="relative bg-white shadow rounded-xl p-6 overflow-hidden">
+                        <img
+                            src="/images/relic-bg.jpg"
+                            alt="Relic background"
+                            className="absolute inset-0 w-full h-full object-cover opacity-20"
+                        />
+                        <div className="relative">
+                            <h2 className="text-lg font-semibold mb-2">Most Picked Relic</h2>
+                            <p>{globalStats.topRelic || "NEED DATA"}</p>
+                        </div>
                     </div>
 
                     {/* Most Used Charm */}
-                    <div className="bg-white shadow rounded-xl p-6">
-                        <h2 className="text-lg font-semibold mb-2">Most Used Charm</h2>
-                        <p>{globalStats.topCharm || "NEED DATA"}</p>
+                    <div className="relative bg-white shadow rounded-xl p-6 overflow-hidden">
+                        <img
+                            src="/images/charm-bg.jpg"
+                            alt="Charm background"
+                            className="absolute inset-0 w-full h-full object-cover opacity-20"
+                        />
+                        <div className="relative">
+                            <h2 className="text-lg font-semibold mb-2">Most Used Charm</h2>
+                            <p>{globalStats.topCharm || "NEED DATA"}</p>
+                        </div>
                     </div>
 
                     {/* Most Picked Card */}
-                    <div className="bg-white shadow rounded-xl p-6">
-                        <h2 className="text-lg font-semibold mb-2">Most Picked Card</h2>
-                        {globalStats.topCard ? (
-                            <p>{globalStats.topCard.Name} ({globalStats.topCard.Count})</p>
-                        ) : (
-                            <p>NEED DATA</p>
-                        )}
+                    <div className="relative bg-white shadow rounded-xl p-6 overflow-hidden">
+                        <img
+                            src="/images/card-bg.jpg"
+                            alt="Card background"
+                            className="absolute inset-0 w-full h-full object-cover opacity-20"
+                        />
+                        <div className="relative">
+                            <h2 className="text-lg font-semibold mb-2">Most Picked Card</h2>
+                            <p>
+                                {globalStats.topCard?.Name
+                                    ? `${globalStats.topCard.Name} (${globalStats.topCard.Count})`
+                                    : "NEED DATA"}
+                            </p>
+                        </div>
                     </div>
 
                     {/* Most Picked Hero Power */}
-                    <div className="bg-white shadow rounded-xl p-6">
-                        <h2 className="text-lg font-semibold mb-2">Most Picked Hero Power</h2>
-                        {globalStats.heroPower ? (
-                            <p>{globalStats.heroPower.Name} ({globalStats.heroPower.Count})</p>
-                        ) : (
-                            <p>NEED DATA</p>
-                        )}
+                    <div className="relative bg-white shadow rounded-xl p-6 overflow-hidden">
+                        <img
+                            src="/images/heropower-bg.jpg"
+                            alt="Hero Power background"
+                            className="absolute inset-0 w-full h-full object-cover opacity-20"
+                        />
+                        <div className="relative">
+                            <h2 className="text-lg font-semibold mb-2">Most Picked Hero Power</h2>
+                            <p>
+                                {globalStats.heroPower?.Name
+                                    ? `${globalStats.heroPower.Name} (${globalStats.heroPower.Count})`
+                                    : "NEED DATA"}
+                            </p>
+                        </div>
                     </div>
 
                     {/* Average Run Time */}
-                    <div className="bg-white shadow rounded-xl p-6">
-                        <h2 className="text-lg font-semibold mb-2">Average Run Time</h2>
-                        <p>{globalStats.avgRunTime || "NEED DATA"}</p>
+                    <div className="relative bg-white shadow rounded-xl p-6 overflow-hidden">
+                        <img
+                            src="/images/time-bg.jpg"
+                            alt="Time background"
+                            className="absolute inset-0 w-full h-full object-cover opacity-20"
+                        />
+                        <div className="relative">
+                            <h2 className="text-lg font-semibold mb-2">Average Run Time</h2>
+                            <p>{globalStats.avgRunTime || "NEED DATA"}</p>
+                        </div>
                     </div>
 
                     {/* Highest Score */}
-                    <div className="bg-white shadow rounded-xl p-6">
-                        <h2 className="text-lg font-semibold mb-2">Highest Score</h2>
-                        {globalStats.highestScore ? (
-                            <p>{globalStats.highestScore.Score} ({globalStats.highestScore.SteamName})</p>
-                        ) : (
-                            <p>NEED DATA</p>
-                        )}
+                    <div className="relative bg-white shadow rounded-xl p-6 overflow-hidden">
+                        <img
+                            src="/images/score-bg.jpg"
+                            alt="Score background"
+                            className="absolute inset-0 w-full h-full object-cover opacity-20"
+                        />
+                        <div className="relative">
+                            <h2 className="text-lg font-semibold mb-2">Highest Score</h2>
+                            <p>
+                                {globalStats.highestScore?.Score
+                                    ? `${globalStats.highestScore.Score} (${globalStats.highestScore.SteamName})`
+                                    : "NEED DATA"}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
