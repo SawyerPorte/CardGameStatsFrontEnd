@@ -66,13 +66,13 @@ export default function App() {
                     Global Stats Dashboard
                 </h1>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {/* Grid container for stats */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
+
                     {/* Most Popular Class */}
                     <div className="bg-white shadow rounded-xl p-6">
                         <h2 className="text-lg font-semibold mb-2">Most Popular Class</h2>
-                        <p className="text-gray-700">
-                            {globalStats.topClass?.Name || "NEED DATA"}
-                        </p>
+                        <p>{globalStats.topClass?.Name || "NEED DATA"}</p>
                     </div>
 
                     {/* Wins by Class */}
@@ -80,83 +80,71 @@ export default function App() {
                         <h2 className="text-lg font-semibold mb-2">Wins by Class</h2>
                         {Object.keys(globalStats.winsByClass || {}).length > 0 ? (
                             Object.entries(globalStats.winsByClass).map(([cls, count]) => (
-                                <p key={cls} className="text-gray-700">
-                                    {cls}: {count}
-                                </p>
+                                <p key={cls}>{cls}: {count}</p>
                             ))
                         ) : (
-                            <p className="text-gray-500">NEED DATA</p>
+                            <p>NEED DATA</p>
                         )}
                     </div>
 
                     {/* Average Deck Size */}
                     <div className="bg-white shadow rounded-xl p-6">
                         <h2 className="text-lg font-semibold mb-2">Average Deck Size</h2>
-                        <p className="text-gray-700">
-                            {globalStats.avgDeckSize || "NEED DATA"}
-                        </p>
+                        <p>{globalStats.avgDeckSize || "NEED DATA"}</p>
                     </div>
 
                     {/* Most Deadly Enemy */}
                     <div className="bg-white shadow rounded-xl p-6">
                         <h2 className="text-lg font-semibold mb-2">Most Deadly Enemy</h2>
-                        <p className="text-gray-700">
-                            {globalStats.mostDeadlyEnemy || "NEED DATA"}
-                        </p>
+                        <p>{globalStats.mostDeadlyEnemy || "NEED DATA"}</p>
                     </div>
 
                     {/* Most Picked Relic */}
                     <div className="bg-white shadow rounded-xl p-6">
                         <h2 className="text-lg font-semibold mb-2">Most Picked Relic</h2>
-                        <p className="text-gray-700">
-                            {globalStats.topRelic || "NEED DATA"}
-                        </p>
+                        <p>{globalStats.topRelic || "NEED DATA"}</p>
                     </div>
 
                     {/* Most Used Charm */}
                     <div className="bg-white shadow rounded-xl p-6">
                         <h2 className="text-lg font-semibold mb-2">Most Used Charm</h2>
-                        <p className="text-gray-700">
-                            {globalStats.topCharm || "NEED DATA"}
-                        </p>
+                        <p>{globalStats.topCharm || "NEED DATA"}</p>
                     </div>
 
                     {/* Most Picked Card */}
                     <div className="bg-white shadow rounded-xl p-6">
                         <h2 className="text-lg font-semibold mb-2">Most Picked Card</h2>
-                        <p className="text-gray-700">
-                            {globalStats.topCard?.Name
-                                ? `${globalStats.topCard.Name} (${globalStats.topCard.Count})`
-                                : "NEED DATA"}
-                        </p>
+                        {globalStats.topCard ? (
+                            <p>{globalStats.topCard.Name} ({globalStats.topCard.Count})</p>
+                        ) : (
+                            <p>NEED DATA</p>
+                        )}
                     </div>
 
                     {/* Most Picked Hero Power */}
                     <div className="bg-white shadow rounded-xl p-6">
                         <h2 className="text-lg font-semibold mb-2">Most Picked Hero Power</h2>
-                        <p className="text-gray-700">
-                            {globalStats.heroPower?.Name
-                                ? `${globalStats.heroPower.Name} (${globalStats.heroPower.Count})`
-                                : "NEED DATA"}
-                        </p>
+                        {globalStats.heroPower ? (
+                            <p>{globalStats.heroPower.Name} ({globalStats.heroPower.Count})</p>
+                        ) : (
+                            <p>NEED DATA</p>
+                        )}
                     </div>
 
                     {/* Average Run Time */}
                     <div className="bg-white shadow rounded-xl p-6">
                         <h2 className="text-lg font-semibold mb-2">Average Run Time</h2>
-                        <p className="text-gray-700">
-                            {globalStats.avgRunTime || "NEED DATA"}
-                        </p>
+                        <p>{globalStats.avgRunTime || "NEED DATA"}</p>
                     </div>
 
                     {/* Highest Score */}
                     <div className="bg-white shadow rounded-xl p-6">
                         <h2 className="text-lg font-semibold mb-2">Highest Score</h2>
-                        <p className="text-gray-700">
-                            {globalStats.highestScore?.Score
-                                ? `${globalStats.highestScore.Score} (${globalStats.highestScore.SteamName})`
-                                : "NEED DATA"}
-                        </p>
+                        {globalStats.highestScore ? (
+                            <p>{globalStats.highestScore.Score} ({globalStats.highestScore.SteamName})</p>
+                        ) : (
+                            <p>NEED DATA</p>
+                        )}
                     </div>
                 </div>
             </div>
