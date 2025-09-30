@@ -17,7 +17,7 @@ export default function App() {
 
     // Load global stats
     useEffect(() => {
-        axios.get('https://cardgamestatsapi-production.up.railway.app/api/values/most-picked-card')
+        axios.get('https://cardgamestatsapi-production.up.railway.app/api/values/card-picks')
             .then(res => {
                 setGlobalStats(prev => ({ ...prev, topCard: res.data }));
             })
