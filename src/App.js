@@ -61,63 +61,86 @@ export default function App() {
 
     return (
         <div className="p-6 bg-gray-50 min-h-screen">
-            <h1 className="text-4xl font-bold mb-6 text-center">Global Stats Dashboard</h1>
+            <h1 className="text-4xl font-bold mb-6 text-center">
+                Global Stats Dashboard
+            </h1>
 
-            <div className="overflow-x-auto w-full">
-                <table className="min-w-full bg-white shadow rounded-xl">
-                    <thead className="bg-gray-200">
+            <div className="overflow-x-auto">
+                <table className="min-w-full bg-white rounded shadow divide-y divide-gray-200">
+                    <thead className="bg-gray-100">
                         <tr>
-                            <th className="px-6 py-3 text-left">Stat</th>
-                            <th className="px-6 py-3 text-left">Value</th>
+                            <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">
+                                Stat
+                            </th>
+                            <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">
+                                Value
+                            </th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="divide-y divide-gray-200">
                         <tr>
-                            <td className="px-6 py-3 font-semibold">Most Popular Class</td>
-                            <td className="px-6 py-3">{globalStats.topClass?.Name || "NEED DATA"}</td>
+                            <td className="px-6 py-4">Most Popular Class</td>
+                            <td className="px-6 py-4">{globalStats.topClass.Name}</td>
                         </tr>
+
                         <tr>
-                            <td className="px-6 py-3 font-semibold">Wins by Class</td>
-                            <td className="px-6 py-3">
-                                {Object.entries(globalStats.winsByClass || {}).length > 0
-                                    ? Object.entries(globalStats.winsByClass)
-                                        .map(([cls, wins]) => `${cls}: ${wins}`)
-                                        .join(", ")
+                            <td className="px-6 py-4">Wins by Class</td>
+                            <td className="px-6 py-4">
+                                {Object.keys(globalStats.winsByClass).length > 0
+                                    ? Object.entries(globalStats.winsByClass).map(
+                                        ([cls, count]) => (
+                                            <div key={cls}>
+                                                {cls}: {count}
+                                            </div>
+                                        )
+                                    )
                                     : "NEED DATA"}
                             </td>
                         </tr>
+
                         <tr>
-                            <td className="px-6 py-3 font-semibold">Average Deck Size</td>
-                            <td className="px-6 py-3">{globalStats.avgDeckSize || "NEED DATA"}</td>
+                            <td className="px-6 py-4">Average Deck Size</td>
+                            <td className="px-6 py-4">{globalStats.avgDeckSize}</td>
                         </tr>
+
                         <tr>
-                            <td className="px-6 py-3 font-semibold">Most Deadly Enemy</td>
-                            <td className="px-6 py-3">{globalStats.mostDeadlyEnemy?.Name || "NEED DATA"}</td>
+                            <td className="px-6 py-4">Most Deadly Enemy</td>
+                            <td className="px-6 py-4">{globalStats.mostDeadlyEnemy}</td>
                         </tr>
+
                         <tr>
-                            <td className="px-6 py-3 font-semibold">Most Picked Relic</td>
-                            <td className="px-6 py-3">{globalStats.topRelic?.Name || "NEED DATA"}</td>
+                            <td className="px-6 py-4">Most Picked Relic</td>
+                            <td className="px-6 py-4">{globalStats.topRelic}</td>
                         </tr>
+
                         <tr>
-                            <td className="px-6 py-3 font-semibold">Most Used Charm</td>
-                            <td className="px-6 py-3">{globalStats.topCharm?.Name || "NEED DATA"}</td>
+                            <td className="px-6 py-4">Most Used Charm</td>
+                            <td className="px-6 py-4">{globalStats.topCharm}</td>
                         </tr>
+
                         <tr>
-                            <td className="px-6 py-3 font-semibold">Most Picked Card</td>
-                            <td className="px-6 py-3">{globalStats.topCard?.Name || "NEED DATA"}</td>
+                            <td className="px-6 py-4">Most Picked Card</td>
+                            <td className="px-6 py-4">
+                                {globalStats.topCard.Name} ({globalStats.topCard.Count})
+                            </td>
                         </tr>
+
                         <tr>
-                            <td className="px-6 py-3 font-semibold">Most Picked Hero Power</td>
-                            <td className="px-6 py-3">{globalStats.topHeroPower?.Name || "NEED DATA"}</td>
+                            <td className="px-6 py-4">Most Picked Hero Power</td>
+                            <td className="px-6 py-4">
+                                {globalStats.heroPower.Name} ({globalStats.heroPower.Count})
+                            </td>
                         </tr>
+
                         <tr>
-                            <td className="px-6 py-3 font-semibold">Average Run Time</td>
-                            <td className="px-6 py-3">{globalStats.avgRunTime || "NEED DATA"}</td>
+                            <td className="px-6 py-4">Average Run Time</td>
+                            <td className="px-6 py-4">{globalStats.avgRunTime}</td>
                         </tr>
+
                         <tr>
-                            <td className="px-6 py-3 font-semibold">Highest Score</td>
-                            <td className="px-6 py-3">
-                                {globalStats.highestScore?.SteamName || "NEED DATA"}: {globalStats.highestScore?.EndingScore || 0}
+                            <td className="px-6 py-4">Highest Score</td>
+                            <td className="px-6 py-4">
+                                {globalStats.highestScore.SteamName} ({globalStats.highestScore.Score})
                             </td>
                         </tr>
                     </tbody>
