@@ -16,11 +16,6 @@ export default function App() {
         enemies: [],
         classes: []
     });
-    //const [searchName, setSearchName] = useState("");
-    //const [playerStats, setPlayerStats] = useState(null);
-    //const [cardPickData, setCardPickData] = useState([]);
-    //const [mostPickedCard, setMostPickedCard] = useState(null);
-    //const [mostPickedHero, setMostPickedHero] = useState(null);
 
     // Load global stats
     useEffect(() => {
@@ -29,82 +24,58 @@ export default function App() {
             .catch(err => console.error(err));
     }, []);
 
-    //// Handle search
-    //const handleSearch = () => {
-    //    if (!searchName) return;
-    //    axios.get(`${API_BASE}/player-stats/${searchName}`)
-    //        .then(res => setPlayerStats(res.data))
-    //        .catch(() => setPlayerStats(null));
-    //};
-
     return (
-        <div className="min-h-screen bg-gray-50 p-6">
-            {/* Header */}
-            <header className="text-center mb-8">
-                <h1 className="text-4xl font-bold text-blue-600">Global Stats Dashboard</h1>
-                <p className="text-gray-600 mt-2">View global trends across all runs</p>
-            </header>
+        <div className="p-6 bg-gray-50 min-h-screen">
+            <h1 className="text-4xl font-bold mb-6">Global Stats Dashboard</h1>
 
-            {/* Highlight Stats Section */}
-            <section className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 max-w-6xl mx-auto">
-                <div className="bg-white shadow rounded-xl p-6 text-center">
-                    <h2 className="text-lg font-semibold">Most Picked Card</h2>
-                    <p className="mt-2 text-purple-600 text-xl">{globalStats.topCard?.Card} ({globalStats.topCard?.Count} times)</p>
+            <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {/* Cards */}
+                <div className="bg-white p-4 rounded shadow">
+                    <h2 className="text-xl font-semibold mb-2">Cards</h2>
+                    {globalStats.cards.map(c => (
+                        <div key={c.Name}>{c.Name}: {c.Count}</div>
+                    ))}
                 </div>
-                <div className="bg-white shadow rounded-xl p-6 text-center">
-                    <h2 className="text-lg font-semibold">Most Popular Class</h2>
-                    <p className="mt-2 text-green-600 text-xl">{globalStats.topClass?.ClassName}</p>
-                </div>
-                <div className="bg-white shadow rounded-xl p-6 text-center">
-                    <h2 className="text-lg font-semibold">Highest Score</h2>
-                    <p className="mt-2 text-red-600 text-xl">{globalStats.highestScore?.SteamName} ({globalStats.highestScore?.Score})</p>
-                </div>
-            </section>
 
-            {/* Full Stats Table */}
-            <section className="bg-white shadow rounded-xl p-6 max-w-6xl mx-auto overflow-x-auto">
-                <table className="min-w-full table-auto border-collapse">
-                    <thead>
-                        <tr className="bg-gray-100">
-                            <th className="border px-4 py-2">Stat</th>
-                            <th className="border px-4 py-2">Value</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td className="border px-4 py-2">Table of Wins per Class</td>
-                            <td className="border px-4 py-2">
-                                {Object.entries(globalStats.winsByClass || {}).map(([cls, wins]) => (
-                                    <div key={cls}>{cls}: {wins}</div>
-                                ))}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className="border px-4 py-2">Average Deck Size</td>
-                            <td className="border px-4 py-2">{globalStats.avgDeckSize}</td>
-                        </tr>
-                        <tr>
-                            <td className="border px-4 py-2">Most Deadly Enemy</td>
-                            <td className="border px-4 py-2">{globalStats.mostDeadlyEnemy}</td>
-                        </tr>
-                        <tr>
-                            <td className="border px-4 py-2">Most Picked Relic</td>
-                            <td className="border px-4 py-2">{globalStats.topRelic}</td>
-                        </tr>
-                        <tr>
-                            <td className="border px-4 py-2">Most Used Charm</td>
-                            <td className="border px-4 py-2">{globalStats.topCharm}</td>
-                        </tr>
-                        <tr>
-                            <td className="border px-4 py-2">Most Picked Hero Power</td>
-                            <td className="border px-4 py-2">{globalStats.heroPower?.HeroPower} ({globalStats.heroPower?.Count})</td>
-                        </tr>
-                        <tr>
-                            <td className="border px-4 py-2">Average Run Time</td>
-                            <td className="border px-4 py-2">{globalStats.avgRunTime}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                {/* Relics */}
+                <div className="bg-white p-4 rounded shadow">
+                    <h2 className="text-xl font-semibold mb-2">Relics</h2>
+                    {globalStats.relics.map(r => (
+                        <div key={r.Name}>{r.Name}: {r.Count}</div>
+                    ))}
+                </div>
+
+                {/* Charms */}
+                <div className="bg-white p-4 rounded shadow">
+                    <h2 className="text-xl font-semibold mb-2">Charms</h2>
+                    {globalStats.charms.map(ch => (
+                        <div key={ch.Name}>{ch.Name}: {ch.Count}</div>
+                    ))}
+                </div>
+
+                {/* Hero Powers */}
+                <div className="bg-white p-4 rounded shadow">
+                    <h2 className="text-xl font-semibold mb-2">Hero Powers</h2>
+                    {globalStats.heroPowers.map(h => (
+                        <div key={h.Name}>{h.Name}: {h.Count}</div>
+                    ))}
+                </div>
+
+                {/* Enemies */}
+                <div className="bg-white p-4 rounded shadow">
+                    <h2 className="text-xl font-semibold mb-2">Enemies</h2>
+                    {globalStats.enemies.map(e => (
+                        <div key={e.Name}>{e.Name}: {e.Count}</div>
+                    ))}
+                </div>
+
+                {/* Classes */}
+                <div className="bg-white p-4 rounded shadow">
+                    <h2 className="text-xl font-semibold mb-2">Classes</h2>
+                    {globalStats.classes.map(cls => (
+                        <div key={cls.Name}>{cls.Name}: {cls.Count}</div>
+                    ))}
+                </div>
             </section>
         </div>
     );
