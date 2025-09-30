@@ -28,13 +28,13 @@ export default function App() {
         });
     }, []);
 
-    // Handle search
-    const handleSearch = () => {
-        if (!searchName) return;
-        axios.get(`${API_BASE}/player-stats/${searchName}`)
-            .then(res => setPlayerStats(res.data))
-            .catch(() => setPlayerStats(null));
-    };
+    //// Handle search
+    //const handleSearch = () => {
+    //    if (!searchName) return;
+    //    axios.get(`${API_BASE}/player-stats/${searchName}`)
+    //        .then(res => setPlayerStats(res.data))
+    //        .catch(() => setPlayerStats(null));
+    //};
 
     return (
         <div className="min-h-screen bg-gray-50 p-6">
@@ -65,27 +65,27 @@ export default function App() {
             </section>
 
             {/* Search Player Section */}
-            <section className="bg-white shadow rounded-xl p-6 mb-10 max-w-3xl mx-auto">
-                <h2 className="text-xl font-semibold mb-4">Search Player by Steam Name</h2>
-                <div className="flex gap-2">
-                    <input
-                        type="text"
-                        value={searchName}
-                        onChange={e => setSearchName(e.target.value)}
-                        placeholder="Enter Steam Name"
-                        className="flex-1 border rounded px-3 py-2"
-                    />
-                    <button onClick={handleSearch} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
-                        Search
-                    </button>
-                </div>
-                {playerStats && (
-                    <div className="mt-4 space-y-2">
-                        <p><strong>Win Rate:</strong> {(playerStats.winRate * 100).toFixed(1)}%</p>
-                        <p><strong>Most Played Class:</strong> {playerStats.mostPlayedClass}</p>
-                    </div>
-                )}
-            </section>
+            {/*<section className="bg-white shadow rounded-xl p-6 mb-10 max-w-3xl mx-auto">*/}
+            {/*    <h2 className="text-xl font-semibold mb-4">Search Player by Steam Name</h2>*/}
+            {/*    <div className="flex gap-2">*/}
+            {/*        <input*/}
+            {/*            type="text"*/}
+            {/*            value={searchName}*/}
+            {/*            onChange={e => setSearchName(e.target.value)}*/}
+            {/*            placeholder="Enter Steam Name"*/}
+            {/*            className="flex-1 border rounded px-3 py-2"*/}
+            {/*        />*/}
+            {/*        <button onClick={handleSearch} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">*/}
+            {/*            Search*/}
+            {/*        </button>*/}
+            {/*    </div>*/}
+            {/*    {playerStats && (*/}
+            {/*        <div className="mt-4 space-y-2">*/}
+            {/*            <p><strong>Win Rate:</strong> {(playerStats.winRate * 100).toFixed(1)}%</p>*/}
+            {/*            <p><strong>Most Played Class:</strong> {playerStats.mostPlayedClass}</p>*/}
+            {/*        </div>*/}
+            {/*    )}*/}
+            {/*</section>*/}
 
             {/* Card Picks Chart */}
             <section className="bg-white shadow rounded-xl p-6 max-w-4xl mx-auto">
