@@ -172,7 +172,7 @@ export default function App() {
     };
 
     return (
-        <div className="p-6 bg-gray-50 min-h-screen w-full">
+        <div className="p-6 bg-gray-800 min-h-screen w-full">
             <h1 className="text-4xl font-bold mb-8 text-center w-full">
                 Global Stats Dashboard
             </h1>
