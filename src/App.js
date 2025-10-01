@@ -10,58 +10,53 @@ const API_BASE = "https://cardgamestatsapi-production.up.railway.app/api/values"
 
 export default function App() {
     const [globalStats, setGlobalStats] = useState({
-        topClass: { Name: "NEED DATA" },
+        classes: [],
         winsByClass: {},
         avgDeckSize: "NEED DATA",
-        mostDeadlyEnemy: "NEED DATA",
-        topRelic: "NEED DATA",
-        topCharm: "NEED DATA",
-        topCard: { Name: "NEED DATA", Count: 0 },
-        heroPower: { Name: "NEED DATA", Count: 0 },
+        enemies: [],
+        relics: [],
+        charms: [],
+        cards: [],
+        heroPowers: [],
         avgRunTime: "NEED DATA",
-        highestScore: { SteamName: "NEED DATA", Score: 0 }
+        highestScore: { SteamName: "NEED DATA", EndingScore: 0 }
     });
 
     // Load global stats
     useEffect(() => {
         axios
-            .get(
-                "https://cardgamestatsapi-production.up.railway.app/api/values/global-stats"
-            )
+            .get("https://cardgamestatsapi-production.up.railway.app/api/values/global-stats")
             .then((res) => {
                 const data = res.data;
 
                 setGlobalStats({
-                    topClass:
-                        data.classes?.length > 0
-                            ? { Name: data.classes[0].Name }
-                            : { Name: "NEED DATA" },
+                    classes: data.classes || [],
                     winsByClass: data.winsByClass || {},
                     avgDeckSize: data.avgDeckSize || "NEED DATA",
-                    mostDeadlyEnemy:
-                        data.enemies?.length > 0 ? data.enemies[0].Name : "NEED DATA",
-                    topRelic:
-                        data.relics?.length > 0 ? data.relics[0].Name : "NEED DATA",
-                    topCharm:
-                        data.charms?.length > 0 ? data.charms[0].Name : "NEED DATA",
-                    topCard:
-                        data.cards?.length > 0
-                            ? { Name: data.cards[0].Name, Count: data.cards[0].Count }
-                            : { Name: "NEED DATA", Count: 0 },
-                    heroPower:
-                        data.heroPowers?.length > 0
-                            ? { Name: data.heroPowers[0].Name, Count: data.heroPowers[0].Count }
-                            : { Name: "NEED DATA", Count: 0 },
+                    enemies: data.enemies || [],
+                    relics: data.relics || [],
+                    charms: data.charms || [],
+                    cards: data.cards || [],
+                    heroPowers: data.heroPowers || [],
                     avgRunTime: data.avgRunTime || "NEED DATA",
-                    highestScore:
-                        data.highestScore || { SteamName: "NEED DATA", Score: 0 }
+                    highestScore: data.highestScore || { SteamName: "NEED DATA", EndingScore: 0 }
                 });
             })
             .catch((err) => console.error(err));
     }, []);
 
     const statCards = [
-        { title: "Most Popular Class", value: globalStats.topClass?.Name || "NEED DATA" },
+        {
+            title: "Most Popular Classes",
+            value:
+                globalStats.classes.length > 0
+                    ? globalStats.classes.map((cls, i) => (
+                        <div key={i}>
+                            {cls.Name} ({cls.Count})
+                        </div>
+                    ))
+                    : "NEED DATA"
+        },
         {
             title: "Wins by Class",
             value:
@@ -73,32 +68,69 @@ export default function App() {
                     ))
                     : "NEED DATA",
         },
+        {
+            title: "Most Deadly Enemies",
+            value:
+                globalStats.enemies.length > 0
+                    ? globalStats.enemies.map((enemy, i) => (
+                        <div key={i}>
+                            {enemy.Name} ({enemy.Count})
+                        </div>
+                    ))
+                    : "NEED DATA"
+        },
+        {
+            title: "Most Picked Relics",
+            value:
+                globalStats.relics.length > 0
+                    ? globalStats.relics.map((relic, i) => (
+                        <div key={i}>
+                            {relic.Name} ({relic.Count})
+                        </div>
+                    ))
+                    : "NEED DATA"
+        },
+        {
+            title: "Most Used Charms",
+            value:
+                globalStats.charms.length > 0
+                    ? globalStats.charms.map((charm, i) => (
+                        <div key={i}>
+                            {charm.Name} ({charm.Count})
+                        </div>
+                    ))
+                    : "NEED DATA"
+        },
+        {
+            title: "Most Picked Cards",
+            value:
+                globalStats.cards.length > 0
+                    ? globalStats.cards.map((card, i) => (
+                        <div key={i}>
+                            {card.Name} ({card.Count})
+                        </div>
+                    ))
+                    : "NEED DATA"
+        },
+        {
+            title: "Most Picked Hero Powers",
+            value:
+                globalStats.heroPowers.length > 0
+                    ? globalStats.heroPowers.map((hp, i) => (
+                        <div key={i}>
+                            {hp.Name} ({hp.Count})
+                        </div>
+                    ))
+                    : "NEED DATA"
+        },
         { title: "Average Deck Size", value: globalStats.avgDeckSize || "NEED DATA" },
-        { title: "Most Deadly Enemy", value: globalStats.mostDeadlyEnemy || "NEED DATA" },
-        { title: "Most Picked Relic", value: globalStats.topRelic || "NEED DATA" },
-        { title: "Most Used Charm", value: globalStats.topCharm || "NEED DATA" },
-        {
-            title: "Most Picked Card",
-            value:
-                globalStats.topCard?.Name
-                    ? `${globalStats.topCard.Name} (${globalStats.topCard.Count})`
-                    : "NEED DATA",
-        },
-        {
-            title: "Most Picked Hero Power",
-            value:
-                globalStats.heroPower?.Name
-                    ? `${globalStats.heroPower.Name} (${globalStats.heroPower.Count})`
-                    : "NEED DATA",
-        },
         { title: "Average Run Time", value: globalStats.avgRunTime || "NEED DATA" },
         {
             title: "Highest Score",
-            value:
-                globalStats.highestScore?.Score
-                    ? `${globalStats.highestScore.Score} (${globalStats.highestScore.SteamName})`
-                    : "NEED DATA",
-        },
+            value: globalStats.highestScore?.EndingScore
+                ? `${globalStats.highestScore.EndingScore} (${globalStats.highestScore.SteamName})`
+                : "NEED DATA"
+        }
     ];
 
     return (
