@@ -139,7 +139,7 @@ export default function App() {
                 Global Stats Dashboard
             </h1>
 
-            <div className='grid md:grid-cols-4 auto-rows-[300px] gap-4 my-10'>
+            <div className='grid md:grid-cols-5 auto-rows-[200px] gap-4 my-10'>
                 {statCards.map((stat) => (
                     <div
                         key={stat.title}
