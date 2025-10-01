@@ -193,12 +193,12 @@ export default function App() {
             <div className="grid md:grid-cols-2 gap-4">
                 <div className="bg-neutral-100 border-2 rounded-xl p-4">
                     <h2 className="text-xl font-bold mb-2">Win Rate by Class</h2>
-                    <ClassWinRateChart data={globalStats.byClass} />
+                    <ClassWinRateChart data={globalStats.winRateByClass} />
                 </div>
 
                 <div className="bg-neutral-100 border-2 rounded-xl p-4">
                     <h2 className="text-xl font-bold mb-2">Win Rate by Difficulty</h2>
-                    <DifficultyWinRateChart data={globalStats.byDifficulty} />
+                    <DifficultyWinRateChart data={globalStats.winRateByDifficulty} />
                 </div>
             </div>
         </div>
