@@ -181,7 +181,7 @@ export default function App() {
                 {statCards.map((stat) => (
                     <div
                         key={stat.title}
-                        className="bg-neutral-100 border-2 rounded-xl p-2"
+                        className="bg-gray-300 border-2 rounded-xl p-2 text-white"
                     >
                         <h2 className="text-xl font-bold">{stat.title}</h2>
                         <p className="text-lg">{stat.value}</p>
@@ -191,12 +191,12 @@ export default function App() {
 
             {/* Charts grid */}
             <div className="grid md:grid-cols-2 gap-4">
-                <div className="bg-neutral-100 border-2 rounded-xl p-4">
+                <div className="bg-gray-300 border-2 rounded-xl p-4 text-white">
                     <h2 className="text-xl font-bold mb-2">Win Rate by Class</h2>
                     <ClassWinRateChart data={globalStats.winRateByClass} />
                 </div>
 
-                <div className="bg-neutral-100 border-2 rounded-xl p-4">
+                <div className="bg-gray-300 border-2 rounded-xl p-4 text-white">
                     <h2 className="text-xl font-bold mb-2">Win Rate by Difficulty</h2>
                     <DifficultyWinRateChart data={globalStats.winRateByDifficulty} />
                 </div>
