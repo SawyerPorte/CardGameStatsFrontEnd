@@ -147,7 +147,7 @@ export default function App() {
                 <BarChart data={data}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="Class" />  {/* make sure your data has a `Class` field */}
-                    <YAxis />
+                    <YAxis domain={[0, 100]} />
                     <Tooltip />
                     <Bar dataKey="WinRate" fill="#8884d8" />
                 </BarChart>
@@ -163,7 +163,7 @@ export default function App() {
                 <LineChart data={data}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="Difficulty" />
-                    <YAxis />
+                    <YAxis domain={[0, 100]} />
                     <Tooltip />
                     <Line type="monotone" dataKey="WinRate" stroke="#82ca9d" />
                 </LineChart>
