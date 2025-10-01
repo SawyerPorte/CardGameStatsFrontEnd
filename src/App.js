@@ -5,6 +5,7 @@ import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts'
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+
 const API_BASE = "https://cardgamestatsapi-production.up.railway.app/api/values";
 
 export default function App() {
