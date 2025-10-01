@@ -1,7 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
 import './tailwind-output.css';
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
+import {
+    LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer,BarChart,Bar
+} from "recharts";
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -19,7 +21,9 @@ export default function App() {
         cards: [],
         heroPowers: [],
         avgRunTime: "NEED DATA",
-        highestScore: { SteamName: "NEED DATA", EndingScore: 0 }
+        highestScore: { SteamName: "NEED DATA", EndingScore: 0 },
+        byClass: [],
+        byDifficulty: []
     });
 
     // Load global stats
@@ -39,7 +43,9 @@ export default function App() {
                     cards: data.cards || [],
                     heroPowers: data.heroPowers || [],
                     avgRunTime: data.avgRunTime || "NEED DATA",
-                    highestScore: data.highestScore || { SteamName: "NEED DATA", EndingScore: 0 }
+                    highestScore: data.highestScore || { SteamName: "NEED DATA", EndingScore: 0 },
+                    winRateByClass: data.winRateByClass || [],
+                    winRateByDifficulty: data.winRateByDifficulty || []
                 });
             })
             .catch((err) => console.error(err));
@@ -133,6 +139,38 @@ export default function App() {
         }
     ];
 
+    const ClassWinRateChart = ({ data }) => {
+        if (!data || data.length === 0) return <p>No data</p>;
+
+        return (
+            <ResponsiveContainer width="100%" height={300}>
+                <BarChart data={data}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="Class" />  {/* make sure your data has a `Class` field */}
+                    <YAxis />
+                    <Tooltip />
+                    <Bar dataKey="WinRate" fill="#8884d8" />
+                </BarChart>
+            </ResponsiveContainer>
+        );
+    };
+
+    const DifficultyWinRateChart = ({ data }) => {
+        if (!data || data.length === 0) return <p>No data</p>;
+
+        return (
+            <ResponsiveContainer width="100%" height={300}>
+                <LineChart data={data}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="Difficulty" />
+                    <YAxis />
+                    <Tooltip />
+                    <Line type="monotone" dataKey="WinRate" stroke="#82ca9d" />
+                </LineChart>
+            </ResponsiveContainer>
+        );
+    };
+
     return (
         <div className="p-6 bg-gray-50 min-h-screen w-full">
             <h1 className="text-4xl font-bold mb-8 text-center w-full">
@@ -149,6 +187,19 @@ export default function App() {
                         <p className="text-lg">{stat.value}</p>
                     </div>
                 ))}
+            </div>
+
+            {/* Charts grid */}
+            <div className="grid md:grid-cols-2 gap-4">
+                <div className="bg-neutral-100 border-2 rounded-xl p-4">
+                    <h2 className="text-xl font-bold mb-2">Win Rate by Class</h2>
+                    <ClassWinRateChart data={globalStats.byClass} />
+                </div>
+
+                <div className="bg-neutral-100 border-2 rounded-xl p-4">
+                    <h2 className="text-xl font-bold mb-2">Win Rate by Difficulty</h2>
+                    <DifficultyWinRateChart data={globalStats.byDifficulty} />
+                </div>
             </div>
         </div>
     );
