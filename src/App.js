@@ -146,8 +146,10 @@ export default function App() {
             <ResponsiveContainer width="100%" height={300}>
                 <BarChart data={data}>
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="Class" />  {/* make sure your data has a `Class` field */}
-                    <YAxis domain={[0, 100]} />
+                    <XAxis dataKey="Class"
+                        tick={{ fill: "#fff", fontSize: 12 }} />  {/* make sure your data has a `Class` field */}
+                    <YAxis domain={[0, 100]}
+                        tick={{ fill: "#fff", fontSize: 12 }} />
                     <Tooltip />
                     <Bar dataKey="WinRate" fill="#8884d8" />
                 </BarChart>
@@ -162,8 +164,10 @@ export default function App() {
             <ResponsiveContainer width="100%" height={300}>
                 <LineChart data={data}>
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="Difficulty" />
-                    <YAxis domain={[0, 100]} />
+                    <XAxis dataKey="Difficulty"
+                        tick={{ fill: "#fff", fontSize: 12 }} />
+                    <YAxis domain={[0, 100]}
+                        tick={{ fill: "#fff", fontSize: 12 }} />
                     <Tooltip />
                     <Line type="monotone" dataKey="WinRate" stroke="#82ca9d" />
                 </LineChart>
@@ -190,7 +194,7 @@ export default function App() {
             </div>
 
             {/* Charts grid */}
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid md:grid-cols-2 gap-4 text-white">
                 <div className="bg-gray-500 border-2 rounded-xl p-4 text-white">
                     <h2 className="text-xl font-bold mb-2">Win Rate by Class</h2>
                     <ClassWinRateChart data={globalStats.winRateByClass} />
